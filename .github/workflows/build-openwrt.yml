@@ -1,25 +1,7 @@
-#=================================================
-# https://github.com/P3TERX/Actions-OpenWrt
-# Description: Build OpenWrt using GitHub Actions
-# Lisence: MIT
-# Author: P3TERX
-# Blog: https://p3terx.com
-#=================================================
-
-name: Build OpenWrt
-
+name: Ubuntu
 on:
-  release:
-    types: [published]
-  push:
-    branches:
-      - master
-#    paths:
-#      - '.config'
-#  schedule:
-#    - cron: 0 8 * * 5
-   watch:
-     types: [started]
+  watch:
+    types: started
 
 env:
   REPO_URL: https://github.com/Lienol/openwrt
@@ -33,12 +15,11 @@ env:
   TZ: Asia/Shanghai
 
 jobs:
-  build:
+  Ubuntu:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
 
     - name: Initialization environment
       env:
